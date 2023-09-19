@@ -1,0 +1,24 @@
+# Copyright (C) 2023 Ali Javaheri
+# This file is distributed under the GPLv3.
+msgid ""
+msgstr ""
+"Project-Id-Version: All-In-One Tracking WooCommerce 1.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/alijvhr/all-in-one-tracking-woocommerce\n"
+"Last-Translator: Ali Javaheri <me@alijvhr.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2023-07-30T17:48:03+03:30\n"
+"X-Domain: all-in-one-tracking-woocommerce\n"
+
+msgid "A simple order tracking plugin for woocommerce"
+msgstr "یک پلاگین ساده برای رهگیری سفارشات ووکامرس"
+
+msgid "All-In-One Tracking WooCommerce"
+msgstr "رهگیری همه کاره ووکامرس"
+
+msgid "Ali Javaheri"
+msgstr "علی جواهری"
+
+msgid "Configure"
+msgstr "تنظیمات"
