@@ -20,5 +20,23 @@ msgstr "رهگیری همه کاره ووکامرس"
 msgid "Ali Javaheri"
 msgstr "علی جواهری"
 
+msgid "Shipment Title"
+msgstr "عنوان روش ارسال"
+
+msgid "Tracking Number"
+msgstr "شماره رهگیری"
+
+msgid "Tracking Link"
+msgstr "لینک رهگیری"
+
+msgid "Shipment Duration"
+msgstr "زمان تحویل"
+
+msgid "Order Tracking"
+msgstr "رهگیری سفارش"
+
+msgid "post"
+msgstr "پست"
+
 msgid "Configure"
 msgstr "تنظیمات"
