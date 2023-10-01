@@ -2,20 +2,24 @@
 
 namespace AllInOneTrackingWoocommerce\includes;
 
-class PostScreen {
+class PostScreen extends Singleton {
+
+	/** @var $tracker Tracker */
+	protected $tracker;
 
 	public function init() {
 		add_action( 'load-post.php', [ $this, 'load' ] );
 		add_action( 'load-post-new.php', [ $this, 'load' ] );
 		add_action( 'admin_enqueue_scripts', [ $this, 'meta_box_style' ] );
 		add_action( 'save_post', [ $this, 'save' ] );
+		$this->tracker = new Tracker();
 	}
 
 	public function load() {
-		add_action( 'add_meta_boxes_shop_order', [ $this, 'add_meta_box' ]);
+		add_action( 'add_meta_boxes_shop_order', [ $this, 'add_meta_box' ] );
 	}
 
-	public function add_meta_box(\WP_Post $post) {
+	public function add_meta_box( \WP_Post $post ) {
 		add_meta_box(
 			'wootaio-order-tracking',
 			__( 'Order Tracking', 'all-in-one-tracking-woocommerce' ),
@@ -40,22 +44,22 @@ class PostScreen {
 			return;
 		}
 
-		$title    = sanitize_text_field( $_POST['wootaio_tracking_title'] );
-		$code     = sanitize_text_field( $_POST['wootaio_tracking_code'] );
-		$link     = sanitize_text_field( $_POST['wootaio_tracking_link'] );
-		$link     = str_replace( '{code}', $code, $link );
-		$duration = sanitize_text_field( $_POST['wootaio_tracking_duration'] );
+		$data = [
+			'title'    => sanitize_text_field( $_POST['wootaio_tracking_title'] ),
+			'code'     => sanitize_text_field( $_POST['wootaio_tracking_code'] ),
+			'raw_link'     => sanitize_text_field( $_POST['wootaio_tracking_raw_link'] ),
+			'duration' => sanitize_text_field( $_POST['wootaio_tracking_duration'] )
+		];
 
-		update_post_meta( $post_id, 'wootaio_tracking_title', $title );
-		update_post_meta( $post_id, 'wootaio_tracking_code', $code );
-		update_post_meta( $post_id, 'wootaio_tracking_link', $link );
-		update_post_meta( $post_id, 'wootaio_tracking_duration', $duration );
+		$this->tracker->set_order(get_the_ID());
+		$this->tracker->set_data( $data );
+
 	}
-
 
 	public function render_meta_box() {
 		wp_nonce_field( 'wootaio', 'wootaio_nonce' );
-		$meta = get_post_meta(get_the_ID());
+		$this->tracker->set_order(get_the_ID());
+		$meta = $this->tracker->get_data();
 		include WOOTAIO_PLUGIN_PATH . "/views/meta_box.php";
 	}
 
