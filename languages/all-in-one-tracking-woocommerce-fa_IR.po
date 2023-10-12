@@ -35,8 +35,20 @@ msgstr "زمان تحویل"
 msgid "Order Tracking"
 msgstr "رهگیری سفارش"
 
+msgid "Order ID"
+msgstr "شماره سفارش"
+
 msgid "post"
 msgstr "پست"
 
 msgid "Configure"
 msgstr "تنظیمات"
+
+msgid "Your entered order details are wrong."
+msgstr "اطلاعات سفارش وارد شده صحیح نمیباشد."
+
+msgid "Phone or Email"
+msgstr "ایمیل یا تلفن"
+
+msgid "Undefined"
+msgstr "ثبت نشده"

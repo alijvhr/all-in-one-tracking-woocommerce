@@ -7,6 +7,13 @@
         padding: 10px;
     }
 
+    form.wootaio-tracking-form {
+        display: block;
+        max-width: 700px;
+        margin: auto;
+        width: 100%;
+    }
+
     .wootaio-input-wrapper span {
         width: 27%;
     }
@@ -38,6 +45,16 @@
         width: 100%;
     }
 
+    .wootaio-input-wrapper .wootaio-input {
+        width: 100%;
+        max-width: 300px;
+        box-shadow: 1px 1px 3px #aaa;
+        border-radius: 5px;
+        overflow: hidden;
+        border: 1px solid;
+        direction: ltr;
+    }
+
 </style>
 
 <div class="wootaio-view-wrapper">
@@ -56,7 +73,13 @@
                     <span class="wootaio-input-title">
                         <?= __( 'Order ID', 'all-in-one-tracking-woocommerce' ) ?>
                     </span>
-                    <input type="text" class="wootaio-input" name="order" value="<?= $_GET['order'] ?? "" ?>">
+                    <input type="text" class="wootaio-input" name="order" value="<?= $_GET['order'] ?? "" ?>" placeholder="<?= __( 'Order ID', 'all-in-one-tracking-woocommerce' ) ?>">
+                </label>
+                <label class="wootaio-input-wrapper">
+                    <span class="wootaio-input-title">
+                        <?= __( 'Phone or Email', 'all-in-one-tracking-woocommerce' ) ?>
+                    </span>
+                    <input type="text" class="wootaio-input" name="phone" value="<?= $_GET['phone'] ?? "" ?>" placeholder="<?= __( 'Phone or Email', 'all-in-one-tracking-woocommerce' ) ?>">
                 </label>
                 <label class="wootaio-buttons-wrapper">
                     <button class="btn btn-color-primary">بررسی</button>

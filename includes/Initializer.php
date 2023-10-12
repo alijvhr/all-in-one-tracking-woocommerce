@@ -46,17 +46,24 @@ class Initializer extends Singleton {
 	}
 
 	public function tracker_view() {
-		if ( isset( $_GET['order'] ) ) {
-			$wootaio_order_status = $this->render_status( $_GET['order'] );
+		if ( isset( $_GET['order'], $_GET['phone'] ) ) {
+			$wootaio_order_status = $this->render_status( $_GET['order'], $_GET['phone'] ?? '' );
 		}
 		include WOOTAIO_PLUGIN_PATH . "/views/tracker_view.php";
 	}
 
-	public function render_status( $order_id ) {
-		$this->tracker->set_order( $order_id );
-		$template     = get_option( 'wootaio_setting_template' );
+	public function render_status( $order_id, $phone ) {
+		if ( $this->tracker->set_order( $order_id ) && preg_match( '/^(\+|\s)?\d++$/', $phone ) ) {
+			$template = get_option( 'wootaio_setting_template' );
+			$data     = $this->tracker->get_data();
+			$phone    = preg_replace( '/^(0|(\+|\s)?98)/', '+98', $phone );
+			if ( in_array( $phone, [ $data['order.phone'], $data['order.email'] ] ) ) {
+				return $this->tracker->interpolate( $template );
+			}
+		}
+		$error = __( 'Your entered order details are wrong.', 'all-in-one-tracking-woocommerce' );
 
-		return $this->tracker->interpolate( $template );
+		return "<div class=\"error\">$error</div>";
 	}
 
 	public function addWooSettingSection( $settings ) {
